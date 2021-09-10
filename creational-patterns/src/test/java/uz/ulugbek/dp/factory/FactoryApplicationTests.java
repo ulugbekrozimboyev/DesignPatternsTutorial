@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import uz.ulugbek.dp.factory.prototype.ProtoFalse;
+import uz.ulugbek.dp.factory.prototype.ProtoTrue;
 import uz.ulugbek.dp.factory.singleton.SingA;
 import uz.ulugbek.dp.factory.singleton.SingB;
 
@@ -11,9 +13,19 @@ import uz.ulugbek.dp.factory.singleton.SingB;
 class FactoryApplicationTests {
 
     @Autowired
-    SingB singB1;
+    private SingB singB1;
     @Autowired
-    SingB singB2;
+    private SingB singB2;
+
+    @Autowired
+    private ProtoTrue true1;
+    @Autowired
+    private ProtoTrue true2;
+
+    @Autowired
+    private ProtoFalse false1;
+    @Autowired
+    private ProtoFalse false2;
 
     @Test
     public void  testSingleton(){
@@ -28,4 +40,10 @@ class FactoryApplicationTests {
         Assert.assertSame(singB1, singB2);
     }
 
+    @Test
+    public void testPrototypes(){
+
+        Assert.assertSame(false1, false2);
+        Assert.assertNotSame(true1, true2);
+    }
 }
